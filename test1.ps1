@@ -2,7 +2,7 @@
 Write-Host "----" -ForegroundColor Green
 
 
-$items=Get-ChildItem -Path "D:\*.txt" -Recurse  
+$items=Get-Content -Path "D:\*.txt" -ReadCount
 
 foreach ($i in $items){
     Write-Host $i.FullName
