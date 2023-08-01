@@ -33,7 +33,7 @@ foreach ($i in $items){
                Write-Host $find -NoNewline -BackgroundColor  Yellow
                Write-Host $c2
                Write-Host "Pos :"$c.IndexOf($find)  -ForegroundColor DarkRed -NoNewline
-               Write-Host ' Line :'$line -ForegroundColor Cyan
+               Write-Host ' Line :'$line -ForegroundColor DarkCyan
                
                
             }
