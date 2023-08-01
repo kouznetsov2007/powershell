@@ -2,25 +2,11 @@
 Write-Host "----" -ForegroundColor Green
 
 
-$items=Get-ChildItem -Path "D:\test.txt" -Recurse
-
-$find="kuku"
-
-foreach ($i in $items){
-    Write-Host $i.FullName -ForegroundColor DarkBlue
-    $contents=Get-Content -Path $i.FullName
-    
-    foreach($c in $contents){ 
-       if($c.Length -eq 0) {
-        continue
-       } 
-       
-       if($c.Contains($find)){
-        $c -replace $find , 'poka'
-        }
-    }
-    
-    
+$1=1
+$2=2
+for($i=3; $i -le 50; $i++){
+    $n=$1+$2
+    $1=$2
+    $2=$n
 }
-
-#Write-Host "hello world"
+Write-Host $2
