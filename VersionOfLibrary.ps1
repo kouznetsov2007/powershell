@@ -35,6 +35,7 @@ foreach($l  in $libraries){
     if($CurrentN -ne $l.Name){
         Write-Host ""
         $CurrentN = $l.Name
+        $CurrentV = ""
         Write-Host $CurrentN -ForegroundColor Green
     }
     if($CurrentV -ne $l.ProductVersion){
@@ -43,4 +44,3 @@ foreach($l  in $libraries){
     }
     Write-Host "        "$l.Fullname
 }
-
