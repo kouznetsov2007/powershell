@@ -28,12 +28,34 @@ foreach($f in $file){
 
 $dictjson = $dict|ConvertTo-Json
 $dictjson|Out-File "D:\temp\dictconverted1.json"
+$golden = Get-Content -Path "D:\temp\dictconverted.json"
 
-$reference = $dictjson|ConvertFrom-Json|ConvertTo-Hashtable
-Write-Host $reference
+$reference = $golden|ConvertFrom-Json|ConvertTo-Hashtable 
+
+foreach($d in $dict.Keys){
+    if(-not($reference.Contains($d))){
+        Write-Host $d
+        foreach($v in $dict[$d].Keys){
+            Write-Host "    " $v
+            foreach($f in $dict[$d][$v]){
+                Write-Host "        " $f
+            }
+        }
+        
+    }
+}
 
 
-foreach ($i in $reference.Keys){
+
+
+
+<#foreach($d in $dict){
+    if($dict.Contains($d) -and -not($reference.Contains($d))){
+
+    }
+}#>
+
+<#foreach ($i in $reference.Keys){
     Write-Host $i
     foreach ($y in $reference[$i].Keys){
         Write-Host $"---> $($y)"
@@ -41,8 +63,7 @@ foreach ($i in $reference.Keys){
             Write-Host "------------> $($z)"
         }
     }
-}
-
+}#>
 
 <#foreach($r in $reference){
 
