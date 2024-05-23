@@ -1,7 +1,6 @@
 cls
 
-# copied from https://4sysops.com/archives/convert-json-to-a-powershell-hash-table/
-
+#  ConvertToHashtable function copied from https://4sysops.com/archives/convert-json-to-a-powershell-hash-table/
 
 . "$($PSScriptRoot)\Functions\ConvertToHashtable.ps1"
 
