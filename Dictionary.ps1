@@ -1,5 +1,7 @@
 cls
 
+. "$($PSScriptRoot)\Functions\ConvertToHashtable.ps1"
+
 . "$($PSScriptRoot)\Functions\FindFile.ps1"
 
 $path = "C:\Program Files\Adobe"
@@ -24,19 +26,38 @@ foreach($f in $file){
     $dict[$fileinfo.Name][$version] = $dict[$fileinfo.Name][$version] + $f
 }
 
-<#$dictjson = $dict[$fileinfo.Name][$version]|ConvertTo-Json
-$dictjson|Out-File "D:\temp\dictconverted.json"#>
+$dictjson = $dict|ConvertTo-Json
+$dictjson|Out-File "D:\temp\dictconverted1.json"
 
-foreach($k in $dict.Keys){
-    if($dict[$k].Count -gt 1){
-        <#Write-Host ""
-        Write-Host $k
-        foreach($v in $dict[$k].Keys){
-            Write-Host $v#>
-        foreach($f in $dict[$k][$v]){
-            #Write-Host $f
-            $dictjson= $f[$fileinfo.Name][$version]|ConvertTo-Json
-            $dictjson|Out-File "D:\temp\dictconverted.json"
+$reference = $dictjson|ConvertFrom-Json|ConvertTo-Hashtable
+Write-Host $reference
+
+
+foreach ($i in $reference.Keys){
+    Write-Host $i
+    foreach ($y in $reference[$i].Keys){
+        Write-Host $"---> $($y)"
+        foreach ($z in $reference[$i][$y]){
+            Write-Host "------------> $($z)"
         }
     }
 }
+
+
+<#foreach($r in $reference){
+
+    }
+}#>
+
+<#foreach($k in $dict.Keys){
+    if($dict[$k].Count -gt 1){
+        Write-Host ""
+        Write-Host $k
+        foreach($v in $dict[$k].Keys){
+            Write-Host $v
+        foreach($f in $dict[$k][$v]){
+            Write-Host $f
+            }
+        }
+    }
+}#>
