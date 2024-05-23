@@ -13,7 +13,6 @@ foreach($f in $file){
     $fileinfo = Get-Item $f
     if (-not($dict.ContainsKey($fileinfo.Name))){
         $dict[$fileinfo.Name] = @{}
-        #Write-Host $fileinfo.Name
     }
     $version = $fileinfo.VersionInfo.ProductVersion
     if($null -eq $version){
@@ -25,22 +24,19 @@ foreach($f in $file){
     $dict[$fileinfo.Name][$version] = $dict[$fileinfo.Name][$version] + $f
 }
 
+<#$dictjson = $dict[$fileinfo.Name][$version]|ConvertTo-Json
+$dictjson|Out-File "D:\temp\dictconverted.json"#>
+
 foreach($k in $dict.Keys){
     if($dict[$k].Count -gt 1){
-        Write-Host ""
+        <#Write-Host ""
         Write-Host $k
         foreach($v in $dict[$k].Keys){
-            Write-Host $v
-            foreach($f in $dict[$k][$v]){
-                Write-Host $f
-            }
+            Write-Host $v#>
+        foreach($f in $dict[$k][$v]){
+            #Write-Host $f
+            $dictjson= $f[$fileinfo.Name][$version]|ConvertTo-Json
+            $dictjson|Out-File "D:\temp\dictconverted.json"
         }
     }
-} 
-
-
-
-<#$
-
-$key = 
-$key2 =  #>
+}

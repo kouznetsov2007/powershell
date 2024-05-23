@@ -2,16 +2,10 @@ cls
 
 . "$($PSScriptRoot)\Functions\FindFile.ps1"
 
-<#FileVersion
-
-ProductVersion#>
-
 $path = "C:\Program Files\Adobe"
 $ext = "dll"
 
 $files = FindFile $path $ext
-
-#$path = (Get-Item "C:\Program Files\Adobe\Adobe InDesign 2021\UpdaterNotifications.dll")
 
 $libraries = @()
 
