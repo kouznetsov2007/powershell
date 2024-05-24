@@ -1,7 +1,5 @@
 cls
 
-#  ConvertToHashtable function copied from https://4sysops.com/archives/convert-json-to-a-powershell-hash-table/
-
 . "$($PSScriptRoot)\Functions\ConvertToHashtable.ps1"
 
 . "$($PSScriptRoot)\Functions\FindFile.ps1"
@@ -43,44 +41,29 @@ foreach($d in $dict.Keys){
                 Write-Host "        " $f
             }
         }
-        
     }
 }
 
+Write-Host "Different versions of library" -BackgroundColor Green
 
+$Currentfile = ""
 
+foreach($d in $dict.Keys){
+    if($reference.ContainsKey($d)){
+        foreach($v in $dict[$d].Keys){
+            if(-not($reference[$d].ContainsKey($v))){ 
+                if($Currentfile -ne $d){    
+                    $Currentfile = $d
+                    Write-Host  $Currentfile -ForegroundColor Magenta
+                }
+            Write-Host "New Version  :" $v 
 
-
-<#foreach($d in $dict){
-    if($dict.Contains($d) -and -not($reference.Contains($d))){
-
-    }
-}#>
-
-<#foreach ($i in $reference.Keys){
-    Write-Host $i
-    foreach ($y in $reference[$i].Keys){
-        Write-Host $"---> $($y)"
-        foreach ($z in $reference[$i][$y]){
-            Write-Host "------------> $($z)"
-        }
-    }
-}#>
-
-<#foreach($r in $reference){
-
-    }
-}#>
-
-<#foreach($k in $dict.Keys){
-    if($dict[$k].Count -gt 1){
-        Write-Host ""
-        Write-Host $k
-        foreach($v in $dict[$k].Keys){
-            Write-Host $v
-        foreach($f in $dict[$k][$v]){
-            Write-Host $f
+                if($reference.ContainsKey($d)){
+                    foreach($v in $reference[$d].Keys){
+                        Write-Host "Old version  :"$v
+                    }
+                }
             }
         }
     }
-}#>
+}

@@ -5,3 +5,6 @@
 
 # Tests
 **Tests** are written for both **ErrorsInFiles** and **FindFiles** functions. These tests call the function and test them on a test files. Then test files compare the results with the expected results and the data from the actual output. If the data from the output is the same as the data expected, then it outputs that test is passed. However if the data from the output is not the same as the data expected the test states that the test failed.    
+
+# CompareLibraries
+This script is used for gettting data about libraries in a folder. It is able to find if a file is located in a dictionary, but isn't in a json file. It is also able to write output for the case if the version of library in a dictionary is different to the library in a json file.  
